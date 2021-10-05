@@ -5,19 +5,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
   }
-   /* for order now */
+   /* use for order now */
   .left {
     padding-left: 15%;
   } 
-  /* for view orders*/
+  /* use for view orders*/
   .left2 {
     padding: 0 25% 0 25%;
   } 
-  /* checkout */
+  /* use for checkout */
   .left3 {
     text-align: center;
   } 
-    /* for receipt*/
+    /* use for receipt*/
     .left4 {
       padding: 0 35% 0 35%;
     } 
@@ -27,7 +27,7 @@ body {
     margin: 0px 0px 0px 300px;
   }
 
-  /* Style the top navigation bar */
+  /* navigation bar */
   .navbar {
    
     overflow: hidden;
@@ -60,6 +60,7 @@ body {
     color: black;
   }
 
+/* for image */
   img{
     float: left;
   }
