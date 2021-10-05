@@ -1,3 +1,4 @@
+<!--This will help upload the images into the database  -->
 <?php  
  $connect = mysqli_connect("localhost", "root", "", "delta-db");  
  if(isset($_POST["insert"]))  
@@ -21,7 +22,7 @@
       <body>  
            <br /><br />  
            <div class="container" style="width:500px;">  
-                <h3 align="center">Insert and Display Images From Mysql Database in PHP</h3>  
+                <h3 align="center">Insert and Display Images</h3>  
                 <br />  
                 <form method="post" enctype="multipart/form-data">  
                      <input type="file" name="image" id="image" />  
