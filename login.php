@@ -11,7 +11,7 @@
     <center>
 
         <?php
-        // Used on login
+        // Used for login
         if(isset($_POST["uname"]) && isset($_POST["psw"])){
             $query = "CALL `attempt_login`('".$_POST["uname"]."', '".$_POST["psw"]."');";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
@@ -29,6 +29,8 @@
             }
         }
         ?>
+        
+        <!-- Login form         -->
         <form action="./login.php" method="post">
             <h3>Sign In to Delta Cafe</h3>
             <label for="uname"><b>Username</b></label>
