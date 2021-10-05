@@ -1,4 +1,4 @@
-
+<!-- logout, so the session will end -->
 <?php
 session_start();
 if(isset($_SESSION['username']) && isset($_SESSION['password'])){
