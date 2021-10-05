@@ -11,7 +11,7 @@
     <center>
 
         <?php
-        // Used on create account
+        // payment info
         if(
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) && 
