@@ -11,7 +11,7 @@
     <center>
 
         <?php
-        // Used on account creation
+        // Used on create account
         if(
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) && 
@@ -28,6 +28,8 @@
             header("Location: ./invoice.php");
         }
         ?>
+        
+<!--  table for purchase Information-->
         <p>
         <h3>Purchase Information</h3>
         <form action="checkout.php" method="post">
@@ -73,6 +75,7 @@
         </p>
     </div>
 </div>
+
 
 <?php
     include("./footer.php");
