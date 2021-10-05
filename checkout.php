@@ -11,7 +11,7 @@
     <center>
 
         <?php
-        // payment info
+        // If any information change it will update it in the database.
         if(
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) && 
@@ -29,7 +29,7 @@
         }
         ?>
         
-<!--  table for purchase Information-->
+        <!--  table for payment Information-->
         <p>
         <h3>Purchase Information</h3>
         <form action="checkout.php" method="post">
@@ -68,8 +68,6 @@
             ?>
             <button type="submit">Purchase</button>
         </form>
-        <!-- <br>
-       <button type="submit"><a href="viewOrders.php">Return to View Orders</a></button> -->
         <br><br><br>
     </center>
         </p>
