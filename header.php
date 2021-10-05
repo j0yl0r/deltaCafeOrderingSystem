@@ -8,19 +8,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
+    <!-- Delta Cafe Navigation Bar     -->
     <body>
         <?php
         global $user_id;
         if(isset($user_id)){
             $query = "SELECT role FROM users 
                       WHERE id = $user_id";
-            // CALL `select_user_role`('".$user_id."');";
+
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
             $result = mysqli_store_result($conn);
             $user_role = mysqli_fetch_row($result)[0];
             mysqli_free_result($result);
             while (mysqli_next_result($conn));
 
+            //company logo              
             echo '<img src="logo.jpg" id="logo" width= 100px height= 100px/>';
             $navbar_html = "<div class='navbar'>";
             switch($user_role){
