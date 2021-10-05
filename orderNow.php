@@ -10,7 +10,7 @@
 <div class="container"> 
     <div class="left">
 
- 
+    <!-- Use for item to be added to order     -->
     <?php
         if(isset($_POST["item_id"]) && isset($_POST["qty"]) && $_POST["qty"]){
             $query = "CALL `relate_item_and_order`(".$user_id.", ".$_POST["item_id"].", ".$_POST["qty"].");";
@@ -21,9 +21,8 @@
         }
     ?>    
 
-<!-- <table class="myTable"><tr><th>Item Name</th><th>Description</th><th>Price</th><th>Order Qty</th><th>Actions</th></tr> -->
-
-<?php
+        <!-- Menu table -->
+        <?php
     
         echo "<br>
             <table class ='myTable'>";
