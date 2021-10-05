@@ -10,7 +10,7 @@
     <center>
 
         <?php
-        // Used on create account 
+        // create new customer account 
         if(isset($_POST["uname"]) && 
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) &&
@@ -29,7 +29,7 @@
         }
         ?>
         
-<!--  New customer creating an account        -->
+        <!--  Table for New customer creating an account        -->
         <p><h3>Create An Account</h3>
         <form action="cusNewAcc.php" method="post">
             <input type="text" placeholder="Username" id="uname" name="uname" required>
