@@ -6,13 +6,10 @@
     include("./header.php");
 ?>
 
-<?php
-?>
-
 <div class="container">
     <div class="left4">
     
-     
+        <!--   Select customer order to create invoice    -->
         <?php
             $query = "CALL `select_customer_orders`(".$user_id.")";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
@@ -38,7 +35,7 @@
                     mysqli_free_result($result);
                     while (mysqli_next_result($conn));
 
-
+                // invoice table                
                 if($order_status == 'being_made'){
                     echo "<hr><p><i>Thank You for you order. <br>When your order is ready for pick up, please enter your <b>order id #</b> at the kiosk to get your drinks.</i></p>";
                     echo "<table class ='myTable'>               
