@@ -1,4 +1,4 @@
-<?php
+ <?php
     include("./force_login.php");
     global $user_id;
     include_once("./sqlInit.php");
@@ -11,7 +11,7 @@
     <center>
 
         <?php
-        // Used on account creation
+        // edit customer account info
         if(
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) && 
@@ -32,6 +32,8 @@
             echo "<p style='color:red;'><b>Account updated</b></p>";
         }
         ?>
+        
+<!--Edit Account          -->
         <p>
         <h3>Edit Customer Info</h3>
         <form action="editCustomerInfo.php" method="post">
