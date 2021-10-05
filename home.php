@@ -6,6 +6,7 @@
     include("./header.php");
 ?>
 
+<!-- Home page for the website -->
 <html>
     <body>
     <div class="container">
@@ -14,7 +15,6 @@
         <br><b>Fall in love with what’s in your cup.</b>
         <br>Delta Coffee Shop was built to serve our most 
         <br>delicious and finest coffee to our customers. 
-        <!-- <br>Customers satisfaction is our 1st priority.  -->
         <br>We are now accepting online ordering for pick-up! 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </p>
