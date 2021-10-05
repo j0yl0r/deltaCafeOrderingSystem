@@ -12,6 +12,7 @@
     <div class="left2">
 
     <?php
+        // use for deleting item from order     
         if(isset($_POST["relation_id"])){
             $query = "CALL `delete_order_item_relation`(".$_POST['relation_id'].");";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
@@ -19,6 +20,7 @@
             while (mysqli_next_result($conn));
             echo "<p style='color:red;'><b>Removed item from order</b></p>";
         }
+        //use for checkout         
         if(isset($_POST["checkout_order_id"])){
             $query ="CALL `checkout_order`(".$_POST['checkout_order_id'].");";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
@@ -29,8 +31,8 @@
             // echo "<p style='color:red;'><b>Checked-out order #".$_POST["checkout_order_id"]."</b></p>";
             header("Location: ./checkout.php");
         }
+        //use to update the order      
         if(isset($_POST['order_id']) && isset($_POST['qty'])){
-            // If this page was loaded to update an item
             $query =
             "UPDATE order_item_relations SET quantity_ordered= '$_POST[qty]'
             WHERE order_item_relations.id = '$_POST[order_id]';";
@@ -56,6 +58,7 @@
         mysqli_free_result($result);
         while (mysqli_next_result($conn));
 
+        //show what is in the cart         
         if ($order_count == 0) {
             echo "<h3>No Orders in the system</h3>";
         } else {
