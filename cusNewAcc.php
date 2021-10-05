@@ -3,14 +3,14 @@
     global $conn;
     include("./header.php");
 ?>
-
+<!-- delta cafe logo -->
 <img src="logo.jpg" id="logo" width= 100px height= 100px/>
 <br><br><br><br><br><br>
 <div class="container">
     <center>
 
         <?php
-        // Used on account creation
+        // Used on create account 
         if(isset($_POST["uname"]) && 
             isset($_POST["fname"]) && isset($_POST["lname"]) &&
             isset($_POST["phone"]) && isset($_POST["email"]) &&
@@ -28,6 +28,8 @@
             header("Location: ./login.php");
         }
         ?>
+        
+<!--  New customer creating an account        -->
         <p><h3>Create An Account</h3>
         <form action="cusNewAcc.php" method="post">
             <input type="text" placeholder="Username" id="uname" name="uname" required>
