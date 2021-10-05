@@ -33,7 +33,7 @@
         }
         ?>
         
-<!--Edit Account          -->
+        <!-- Edit Account Form. Customer will only enter information that need to be updated        -->
         <p>
         <h3>Edit Customer Info</h3>
         <form action="editCustomerInfo.php" method="post">
