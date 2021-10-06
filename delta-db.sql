@@ -14,7 +14,7 @@ CREATE TABLE `users` (
   `password` varchar(32) NOT NULL,
   `email` varchar(64) NOT NULL,
   `phone_number` varchar(24) NOT NULL,
-  `role` enum('administrator','customer','transportation_associate') NOT NULL,
+  `role` enum('administrator','customer') NOT NULL,
   `first_name` varchar(24) NOT NULL,
   `last_name` varchar(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
