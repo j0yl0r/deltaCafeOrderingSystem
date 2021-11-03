@@ -6,6 +6,9 @@
     include("./header.php");
 ?>
 
+<?php
+?>
+
 <div class="container">
     <div class="left4">
     
@@ -23,7 +26,7 @@
             while (mysqli_next_result($conn));
     
             if ($order_count == 0) {
-                echo "<h3>No Orders in the system</h3>";
+                echo "<h3>No Invoice/h3>";
             } else {
                 foreach($order_ids as $order_id){
                     
@@ -34,23 +37,24 @@
                     $order_status = $row[0];
                     mysqli_free_result($result);
                     while (mysqli_next_result($conn));
+                
+                // invoice table  
+                if(($order_status == 'order_placed')){
+                    echo "<hr><p style = 'font-size: 1.6em;'> <i>Thank You for your order!</p>";
+                    echo "<hr>";
+                    echo "<p>Ready for pickup in about <b>10-15 minutes</b></p><hr>";
+                }
+                if(($order_status == 'order_placed') || ($order_status == 'ready_for_pickup')){
+                    echo "
+                    <p style = 'font-size: 1.4em;'><b> ".$order_status."</b>
+                    <br><p>When your order is ready for pick up, please enter your <b>order #</b> at the kiosk to get your drinks.</i></p>
+                    ";
+                    echo "
+                    Order #: ".$order_id." <br>
+                    Order Date: ".$row[1]."<br>
 
-                // invoice table                
-                if($order_status == 'being_made'){
-                    echo "<hr><p><i>Thank You for you order. <br>When your order is ready for pick up, please enter your <b>order id #</b> at the kiosk to get your drinks.</i></p>";
-                    echo "<table class ='myTable'>               
-                    <tr>
-                        <th>Order ID: </th> 
-                        <td> #".$order_id."</td>
-                    </tr>
-                    <tr>
-                        <th>Order Status: </th>
-                        <td> ".$order_status."</td>
-                        </tr>
-                    <tr>
-                        <th>Order Date: </th>
-                        <td> ".$row[1]."</td>
-                    </tr>";
+                    ";
+
     
     
                     $query = "CALL `select_order_info`(".$order_id.");";
@@ -63,7 +67,7 @@
 
                     echo "
                     <tr>
-                    <form id='".$formID."' action='' method='post'>
+                    <form  id = '$formID' action='' method='post'>
                     <input type='hidden' id='hidden' name='hidden' value='".$row[0]. "' >
                         <tr>
                             <th>Items: </th>
@@ -72,20 +76,31 @@
                         echo "</form></tr>";
   
                         $total_item_price = $row[3] * $row[2];                    
-                        $total_price += $total_item_price;
+                        $total_price += $total_item_price; //subtotal
+                        $tax = 0.08;
+                        $total = $total_price * $tax; // subtotal * tax
+                        $total2 = $total_price + $total; // total with tax
                     }
   
                     echo "<tr>
-                            <th>Order Total Cost: </th>
+                            <th>Subtotal: </th>
                             <td> $ ".$total_price."</th>
                         </tr>";
+
+                    echo "<br><tr>
+                            <th>Tax: </th>
+                            <td> $ ".$tax."</th>
+                        </tr>";
+                    echo "<br><tr>
+                        <th>Total: </th>
+                        <td> $ ".number_format($total2, 2, '.', '')."</th>
+                    </tr>";
                     echo "</table>";
 
                     echo "<br><hr><br>";
     
                     }
-   
-                    // mysqli_free_result($result);
+
                     while (mysqli_next_result($conn));
 
                 }
@@ -93,6 +108,7 @@
 
         ?>
 
+<button type="submit"><a href="viewOrders.php">Go back to View Orders</a></button>
 
         </div>
 
