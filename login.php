@@ -1,17 +1,18 @@
 <?php
-    include_once("./sqlInit.php");
+    include_once("./sqlInit.php"); // connection page
     global $conn;
-    include("./header.php");
+    include("./header.php"); // navigation bar
 ?>
 
-<img src="logo.jpg" id="logo" width= 100px height= 100px/>
-<br><br><br><br><br><br>
+<img src="logo.jpg" id="logo" width= 100px height= 100px/> <!--logo picture -->
+<br><br><br><br><br><br> <!-- white space -->
+
 <!-- background on the website-->
 <div class="container">
     <center>
 
         <?php
-        // Used for login
+        // Used on login
         if(isset($_POST["uname"]) && isset($_POST["psw"])){
             $query = "CALL `attempt_login`('".$_POST["uname"]."', '".$_POST["psw"]."');";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
@@ -25,14 +26,13 @@
                 session_start();
                 $_SESSION["username"] = $_POST["uname"];
                 $_SESSION["password"] = $_POST["psw"];
-                header("Location: ./home.php");
+                header("Location: ./home.php"); // go to home page when login is successful
             }
         }
         ?>
-        
-        <!-- Login form         -->
+        <!-- Login form  -->
         <form action="./login.php" method="post">
-            <h3>Sign In to Delta Cafe</h3>
+            <h3>Log In to Delta Cafe</h3>
             <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" id="uname" name="uname" required>
             <br><br>
@@ -43,6 +43,7 @@
         </form>
         <br><br><br>
         <hr><br>
+        <!-- New customer registration -->
         New to Delta Cafe? <button type="submit"><a href="cusNewAcc.php">Create Account</a></button>
     </center>
 </div>
