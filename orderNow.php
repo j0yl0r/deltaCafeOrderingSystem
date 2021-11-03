@@ -21,8 +21,8 @@
         }
     ?>    
 
-        <!-- Menu table -->
-        <?php
+<!-- Menu table -->
+<?php
     
         echo "<br>
             <table class ='myTable'>";
@@ -65,7 +65,7 @@
         while($row = mysqli_fetch_row($result)){
             echo "<table class ='myTable'>";
             echo "<tr>";
-            echo "<td style='width: 200px; height: 73px'>".$row[1]."</td>";
+            echo "<td style='width: 200px; height: 67px'>".$row[1]."</td>";
             echo "<td style='width: 250px;'>".$row[2]."</td>";
             echo "<td style='width: 75px;'>$".$row[3]."</td>";
             echo "<td style='width: 75px;'>".$row[5]."</td>";
