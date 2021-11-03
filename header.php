@@ -22,21 +22,32 @@
             mysqli_free_result($result);
             while (mysqli_next_result($conn));
 
-            //company logo              
-            echo '<img src="logo.jpg" id="logo" width= 100px height= 100px/>';
+            echo '<img src="logo.jpg" id="logo" width= 100px height= 100px/>'; // logo picture
             $navbar_html = "<div class='navbar'>";
+
+            // Using swtich statement to determine if the user is Customer or Admin
             switch($user_role){
+                //If it is Admin it will user the Admin Navigation Bar
                 case "administrator":
                     $navbar_html .= "
-                        <a href='index.php'>Home</a>
-                        <a href='manageInventories.php'>Manage Inventories</a>
-                        <a href='manageOrders.php'>Manage Orders</a>
-                        <a href='manageAccount.php'>Manage Accounts</a>";
+                        <a href='home.php'>Home</a>
+                        <a href='manageMenu.php'>Manage Menu</a>
+                        <a href='manageOrder.php'>Manage Orders</a>
+                        <div class='dropdown'>
+                        <button class='dropbtn'>
+                        <a href=''>Manage Accounts</a>
+                        </button>
+                    <div class='dropdown-content'>
+                        <a href='manageCusAcc.php'>Customer Accounts</a>
+                        <a href='manageAdminAcc.php'>Administrator Accounts</a>
+                    </div>
+                </div>";
                     break;
+                // If it is Customer it will user the Customer Navigation Bar
                 case "customer":
                     $navbar_html .= "
                         <a href='home.php'>Home</a>
-                        <a href='orderNow.php'>View Menu</a>
+                        <a href='orderNow.php'>Menu</a>
                         <a href='viewOrders.php'>View Orders</a>
                         <div class='dropdown'>
                             <button class='dropbtn'>
@@ -44,6 +55,7 @@
                             </button>
                         <div class='dropdown-content'>
                             <a href='editCustomerInfo.php'>Edit Account Info</a>
+                            <a href='deleteCusAcc.php'>Delete Account</a>
                         </div>
                     </div>";
                     break;
@@ -51,6 +63,7 @@
                     $navbar_html .= "User role '".$user_role."' not recognized";
               
             }
+            // Logging out from the website
             $navbar_html .= "
                     <a href='logout.php' class='right'>
                         Sign out 
