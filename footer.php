@@ -1,6 +1,6 @@
 </body>
 </html>
-<!--Close the connect  -->
+<!--Close the connection  -->
 <?php
     global $conn;
     mysqli_close($conn);
