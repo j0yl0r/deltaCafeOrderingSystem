@@ -23,11 +23,6 @@
             '".$_POST["card_number"]."', '".$_POST["expire_month"]."', '".$_POST["expire_year"]."', '".$_POST["cvv"]."');";
             mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
             $result = mysqli_store_result($conn);
-            // $login_successful = mysqli_fetch_row($result)[0];
-            // mysqli_free_result($result);
-    
-            // header("Location: ./editCustomerInfo.php");
-
             while (mysqli_next_result($conn));
             echo "<p style='color:red;'><b>Account updated</b></p>";
         }
