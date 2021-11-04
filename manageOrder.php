@@ -126,7 +126,7 @@
                     <td style='width: 120px;'>".$row[1]."</td>
                     <td style='width: 80px;'>".$total_item."</td>";
                 
-
+                    // Admin can also update order status manually.
                     if(($order_status == 'processing') || ($order_status == 'order_placed') || ($order_status == 'ready_for_pickup')){
                         echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
                         echo "<form action='' method='post'>
@@ -135,6 +135,7 @@
                             </tr></form>";
                 }
 
+                     // Once the order is complete admin can no longer edit the status
                     if(($order_status == 'order_completed')){
                         echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
                         echo "<form action='' method='post'>
