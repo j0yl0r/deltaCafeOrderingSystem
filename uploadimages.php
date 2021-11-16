@@ -1,6 +1,5 @@
-<!--This will help upload the images into the database  -->
 <?php  
- $connect = mysqli_connect("localhost", "root", "", "delta-db");  
+ $connect = mysqli_connect("localhost", "root", "", "delta-db");   
  if(isset($_POST["insert"]))  
  {  
       $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));  
@@ -10,19 +9,30 @@
            echo '<script>alert("Image Inserted into Database")</script>';  
       }  
  }  
+
+ if(isset($_POST["img_id"])){
+     $query = "CALL `delete_img`(".$_POST['img_id'].");";
+     mysqli_multi_query($connect, $query) or die(mysqli_error($connect));
+     $result = mysqli_store_result($connect);
+     while (mysqli_next_result($connect));
+     echo '<script>alert("Removed Image from Menu")</script>';  
+ }
  ?>  
  <!DOCTYPE html>  
  <html>  
       <head>  
-           <title>delta cafe</title>  
+           <title>Delta Cafe</title>  
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
       </head>  
       <body>  
+
+
+           
            <br /><br />  
            <div class="container" style="width:500px;">  
-                <h3 align="center">Insert and Display Images</h3>  
+                <h3 align="center">Delta Cafe</h3>  
                 <br />  
                 <form method="post" enctype="multipart/form-data">  
                      <input type="file" name="image" id="image" />  
@@ -30,21 +40,29 @@
                      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />  
                 </form>  
                 <br />  
+                <button type="submit" style="float: right; " ><a href="ManageMenu.php">Go back to Manage Menu</a></button>
+                <br />  
                 <br />  
                 <table class="table table-bordered">  
                      <tr>  
-                          <th>Image</th>  
+                          <th>Coffee Images</th>  
                      </tr>  
-                <?php  
-                $query = "SELECT * FROM tbl_images ORDER BY id ASC";  
+                <?php        
+                $query = "SELECT * FROM tbl_images ORDER BY id DESC";  
                 $result = mysqli_query($connect, $query);  
                 while($row = mysqli_fetch_array($result))  
                 {  
-                     echo '  
-                          <tr>  
+                    $formID = "userID" . $row[0];
+                    echo '  
+                         <tr>
+                         <form id=".$formID." action="./uploadimages.php" method="post">
+                              <input type="hidden" id="hidden" name="hidden" value='.$row[0]. ' >
                                <td>  
                                     <img src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="73" width="60" class="img-thumnail" />  
                                </td>  
+                               <td>
+                                   <button type="submit" name="img_id" value='.$row[0].'>Delete</button>
+                              </td>
                           </tr>  
                      ';  
                 }  
@@ -75,3 +93,4 @@
       });  
  });  
  </script>  
+ 
