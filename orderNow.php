@@ -28,15 +28,18 @@
             <table class ='myTable'>";
         echo "
         <tr>
-            <th>&emsp;&emsp;&emsp;&emsp; Item Name &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-            <th>  Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-            <th> Price &emsp;&emsp;</th>
-            <th> Size &emsp;&emsp;&emsp;</th>
+            <th>&emsp;&emsp;&emsp;&emsp;</th>
+            <th>Item Name &emsp;&emsp;&emsp;&emsp;</th>
+            <th>Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+            <th> Price &emsp;</th>
+            <th> Size &emsp;&emsp;</th>
             <th> Qty &emsp;&emsp;</th>
             <th> Actions &emsp;&emsp;&emsp; &nbsp; </th>
             </table>
         ";
 
+        echo "<div style='float:left;'>";
+        // images that is on the menu
         $query = "SELECT * FROM tbl_images ORDER BY id ASC";  
         mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
         $result = mysqli_store_result($conn);
@@ -46,34 +49,32 @@
                     <img src="data:image/jpeg;base64,'.base64_encode($row[1] ).'" height="73" width="60" class="img-thumnail" />
                   </td></tr></table>';  
         }
+        echo "</div>";
         
-                // update inventory when user add item to order
-                if(isset ($_POST['item_id']) && isset ($_POST['qty'])){
-                    $UpdateQuery =" UPDATE available_items SET stock = stock - '$_POST[qty]'
-                                    WHERE id ='$_POST[item_id]'";
-                    mysqli_multi_query($conn, $UpdateQuery) or die(mysqli_error($conn));
+        // update inventory when user add item to order        
+        if(isset ($_POST['item_id']) && isset ($_POST['qty'])){
+            $UpdateQuery =" UPDATE available_items SET stock = stock - '$_POST[qty]'
+                        WHERE id ='$_POST[item_id]'";
+            mysqli_multi_query($conn, $UpdateQuery) or die(mysqli_error($conn));
                 
-                }  
+        }  
 
-        echo "<div class='column'>";
-        echo "<br><br><br><br>";
-
-
+        // Menu that shows available drinks.
         $query = "CALL `select_all_items`()";
         mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
         $result = mysqli_store_result($conn);
         while($row = mysqli_fetch_row($result)){
             echo "<table class ='myTable'>";
             echo "<tr>";
-            echo "<td style='width: 200px; height: 67px'>".$row[1]."</td>";
-            echo "<td style='width: 250px;'>".$row[2]."</td>";
-            echo "<td style='width: 75px;'>$".$row[3]."</td>";
-            echo "<td style='width: 75px;'>".$row[5]."</td>";
+            echo "<td style='width: 150px; height: 73px'>".$row[1]."</td>";
+            echo "<td style='width: 350px; height: 73px''>".$row[2]."</td>";
+            echo "<td style='width: 50px; height: 73px''>$".$row[3]."</td>";
+            echo "<td style='width: 75px; height: 73px''>".$row[5]."</td>";
             echo "<form action='' method='post'>
-                <td style='width: 50px;'>
+                <td style='width: 50px; height: 73px''>
                     <input type='number' name='qty' min='0' max='99'>
                 </td>";
-            echo "<td style='width: 120px;'>
+            echo "<td style='width: 120px; height: 73px''>
                     <button type='submit' name='item_id' value=".$row[0].">Add To Order</button>
                 </td>
             </form>";
@@ -84,8 +85,7 @@
 ?>
 
     </table>
-    <br><br><br><br>  <br><br><br><br>
-    </div>
+
     </div>
 </div>
 
